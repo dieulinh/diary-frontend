@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import User from '../services/User';
 
-const Register = () => {
+const Login = ({setCurrentUser}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+
   const [message, setMessage] = useState("");
   const [successful, setSuccessful] = useState(false);
 
@@ -12,30 +12,28 @@ const Register = () => {
     const username = e.target.value;
     setUsername(username);
   }
-  const onChangeEmail = (e) => {
-    const username = e.target.value;
-    setEmail(username);
-  }
+
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
   }
   const onSubmit = (e) => {
     e.preventDefault();
-    User.register(username, password, email)
-    .then((response) => {
-      setMessage("register successfully");
+    User.signin(username, password)
+    .then(() => {
+      setMessage("Login successfully");
+      const user = User.getCurrentUser();
+      console.log('user', user);
       setSuccessful(true);
     },
     (err) => {
       const responseMessage = (err.response && err.response.data && err.response.data.message)||err.message||err.toString();
       setMessage(responseMessage);
       setSuccessful(false);
-
     })
   }
   return (<div>
-    <h2> Register component</h2>
+    <h2> Login</h2>
 
     <form onSubmit={onSubmit}>
       {message && successful &&(
@@ -56,14 +54,7 @@ const Register = () => {
         required
         />
       </div>
-      <div className='field'>
-        <label className='label'>Email</label>
-        <input className='input' name="email" type="text"
-        value={email}
-        onChange={onChangeEmail}
-        required
-        />
-      </div>
+
       <div className='field'>
       <label className='label'>Password</label>
         <input className='input' name="password" type="password"
@@ -75,7 +66,7 @@ const Register = () => {
       <div className="field">
         <div className="control">
           <button className="button is-fullwidth is-primary">
-            Register
+            Login
           </button>
         </div>
       </div>
@@ -83,4 +74,4 @@ const Register = () => {
   </div>)
 }
 
-export default Register;
+export default Login;

@@ -10,10 +10,11 @@ const register = (username, email, password) => {
 };
 
 const signin = async (username, password) => {
-  const res = await axios.post(`${APIURL/signin}`, {
+  const res = await axios.post(`${APIURL}/signin`, {
     username,
     password
   });
+
   if (res.data.accessToken) {
     localStorage.setItem("user", JSON.stringify(res.data));
   }
