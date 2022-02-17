@@ -32,6 +32,7 @@ const Notes = () => {
         { notes.map((note) => {
           return (<div className='column is-one-third' key={note._id}>
             <Note note={note} notes={notes} setNotes={setNotes} />
+            <Link to={`/${username}/edit/${note._id}`}><span className='icon is-small'></span> Edit {note._id}</Link>
           </div>)
         })}
       </div>
