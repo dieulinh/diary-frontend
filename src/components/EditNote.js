@@ -19,6 +19,7 @@ const EditNote = () => {
   const username = user.username;
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [selectedTab, setSelectedTab] = useState('write');
 
   // let match = useRouteMatch(`/note/:id`);
   const {id} = useParams();
@@ -40,18 +41,30 @@ const EditNote = () => {
     e.preventDefault();
     setTitle(e.target.value);
   }
-  const handleContentChange = (e) => {
-    e.preventDefault();
-    setContent(e.target.value)
-  }
 
   return (<div className='card has-background-warning'>
     <div id="note" className="content">
       <p>Edit Note</p>
       <form onSubmit={e => {e.preventDefault(); editNote()} }>
-        <input type="text" value={title} onChange={handleTitleChange} required/>
-        <textarea value={content} onChange={handleContentChange} required/>
-        <button type='submit'>Save</button>
+        <div className='field'>
+          <label className='label'>Title</label>
+          <div className="control">
+            <input type="text" value={title} onChange={handleTitleChange} className='input' required/>
+          </div>
+
+        </div>
+        <div className='field'>
+          <label className='label'>Content</label>
+          <div className='control'>
+            <ReactMde value={content}
+              onChange={setContent}
+              selectedTab={selectedTab}
+              onTabChange={setSelectedTab}
+              generateMarkdownPreview={markdown => Promise.resolve(converter.makeHtml(markdown))}
+            />
+          </div>
+        </div>
+        <button className='button is-link'>Save</button>
       </form>
     </div>
 

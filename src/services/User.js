@@ -1,5 +1,5 @@
 import axios from "axios";
-const APIURL = "http://localhost:8000";
+const APIURL = process.env.REACT_APP_API_URL||'http://localhost:8000';
 
 const register = (username, email, password) => {
   return axios.post(`${APIURL}/signup`, {
