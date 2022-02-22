@@ -13,8 +13,8 @@ const Register = () => {
     setUsername(username);
   }
   const onChangeEmail = (e) => {
-    const username = e.target.value;
-    setEmail(username);
+    const email = e.target.value;
+    setEmail(email);
   }
   const onChangePassword = (e) => {
     const password = e.target.value;
@@ -22,7 +22,7 @@ const Register = () => {
   }
   const onSubmit = (e) => {
     e.preventDefault();
-    User.register(username, password, email)
+    User.register(username, email, password)
     .then((response) => {
       setMessage("register successfully");
       setSuccessful(true);
