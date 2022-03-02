@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import User from '../services/User';
 
 const Login = ({setCurrentUser}) => {
@@ -12,7 +13,7 @@ const Login = ({setCurrentUser}) => {
     const username = e.target.value;
     setUsername(username);
   }
-
+  const navigate = useNavigate();
   const onChangePassword = (e) => {
     const password = e.target.value;
     setPassword(password);
@@ -24,6 +25,7 @@ const Login = ({setCurrentUser}) => {
       setMessage("Login successfully");
       const user = User.getCurrentUser();
       console.log('user', user);
+      navigate(`/notes`)
       setSuccessful(true);
     },
     (err) => {

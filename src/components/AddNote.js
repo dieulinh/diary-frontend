@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Showdown from 'showdown';
 import User from '../services/User';
@@ -20,7 +20,7 @@ const AddNote = () => {
     const noteData = { title, content };
     server.post(`/${username}/add`, noteData)
     .then(() => {
-      navigate(`/notes`)
+      navigate(`/notes`);
     })
   }
   const handleTitleChange = (e) => {

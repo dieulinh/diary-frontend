@@ -20,7 +20,11 @@ const signin = async (username, password) => {
   }
   return res.data;
 }
+const signOut = async () => {
+  localStorage.removeItem("user");
+}
 const getCurrentUser = () => {
+
   return JSON.parse(localStorage.getItem("user"));
 }
 
@@ -33,7 +37,8 @@ const User = {
   register,
   signin,
   getCurrentUser,
-  getUserToken
+  getUserToken,
+  signOut
 };
 
 export default User;
