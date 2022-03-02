@@ -24,7 +24,7 @@ const Login = ({setCurrentUser}) => {
     .then(() => {
       setMessage("Login successfully");
       const user = User.getCurrentUser();
-      console.log('user', user);
+      setCurrentUser(user)
       navigate(`/notes`)
       setSuccessful(true);
     },

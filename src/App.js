@@ -51,13 +51,12 @@ const App = () => {
         }
       </nav>
       <Routes>
-        <Route exact path="/" element={<Home/>} />
-        <Route exact path="/signup" element={<Register/>} />
-        <Route exact path="/notes" element={<Notes/>} />
-        <Route exact path="/:username/edit/:id" element={<EditNote/>} />
-        <Route exact path="/:username/add" element={<AddNote/>} />
-        <Route exact path="/login" element={<Login setCurrentUser={setCurrentUser}/>} >
-
+        <Route path="/" element={<Home/>} />
+        <Route path="/signup" element={<Register/>} />
+        <Route path="/notes" element={<Notes/>} />
+        <Route path="/:username/edit/:id" element={<EditNote/>} />
+        <Route path="/:username/add" element={<AddNote/>} />
+        <Route path="/login" element={<Login setCurrentUser={setCurrentUser}/>} >
         </Route>
       </Routes>
 
