@@ -19,7 +19,8 @@ const AddNote = () => {
   const addNote = () => {
     const noteData = { title, content };
     server.post(`/${username}/add`, noteData)
-    .then(() => {
+    .then((data) => {
+      console.log(data)
       navigate(`/notes`);
     })
   }
@@ -35,11 +36,17 @@ const AddNote = () => {
   return (<div className='card has-background-warning'>
     <div id="note" className="content">
       <p>Add Note</p>
-      <form onSubmit={e => {e.preventDefault(); addNote()} }>
-        <input type="text" value={title} onChange={handleTitleChange} required/>
-        <textarea value={content} onChange={handleContentChange} required/>
-        <button type='submit'>Save</button>
-      </form>
+      <div className='is-multiline'>
+        <form onSubmit={e => {e.preventDefault(); addNote()} }>
+          <div className="card-content m-2 has-background-warning-light has-text-dark">
+            <input type="text" value={title} onChange={handleTitleChange} placeholder="note title" required className="fullbox"/>
+            <hr />
+            <textarea value={content} onChange={handleContentChange} required className="fullbox" placeholder="Enter your note content" rows="8"/>
+            <hr />
+            <button type='submit'>Save</button>
+          </div>
+        </form>
+      </div>
     </div>
 
   </div>)
